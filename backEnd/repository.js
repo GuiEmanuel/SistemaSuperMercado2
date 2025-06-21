@@ -46,7 +46,7 @@ class FoodRepository {
   }
   async getAllpayments() {
     try {
-      const sql = "select * from payment";
+      const sql = "select * from venda";
       const responseDB = await this.database.query(sql);
 
       return responseDB.rows;
