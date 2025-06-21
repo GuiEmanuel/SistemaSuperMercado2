@@ -16,24 +16,24 @@ async function getProductById(request, reply) {
   if (responseDB.error) return reply.status(404).json(responseDB.error);
 
   const response = {
-    
+    nome,
+    preco,
+    validade,
   }
 
   reply.json(response);
 }
-async function setPayment(request, reply){
-  const payInfo = request.body;
-
-  const responseDB = await repository.setPayment(payInfo);
+async function getAllCategory(request, reply) {
+  const responseDB = await repository.getAllCategory();
 
   if (responseDB.error) return reply.status(404).json(responseDB.error);
 
   reply.json(responseDB);
 }
-async function setProductBought(request, reply){
-  const itemInfo = request.body;
+async function setPayment(request, reply){
+  const payInfo = request.body;
 
-  const responseDB = await repository.setPayment(itemInfo);
+  const responseDB = await repository.setPayment(payInfo);
 
   if (responseDB.error) return reply.status(404).json(responseDB.error);
 
@@ -47,4 +47,4 @@ async function getHistorico(request, reply){
   reply.json(responseDB);
 }
 
-module.exports = { getAllProducts, getProductById, setPayment, getHistorico, setProductBought };
+module.exports = { getAllProducts, getProductById, setPayment, getHistorico, getAllCategory};
