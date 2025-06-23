@@ -1,5 +1,5 @@
 # Sistema simples de Super Mercado
-Projeto criado como nota final da cadeira de Programação Web I. Ecolhi este tema, pois sempre tive vontade de fazer algo do tipo.
+Projeto criado como nota final da cadeira de Programação Web I. Escolhi este tema, pois sempre tive vontade de fazer um sistema semelhante aos de supermercados.
 
 ## Descrição do projeto
 Este projeto é simples, possuindo poucas funcionalidades, sendo elas:
@@ -19,6 +19,15 @@ Este projeto é simples, possuindo poucas funcionalidades, sendo elas:
 
 - Bibliotecas:
   - SweetAlet2: Para criar a tabela de histórico.
+
+- FrameWorks:
+  - Express: Para roteamento, manipulação de requisições e respostas HTTP.
+
+- Ambiente de execução:
+  - Node: Para executar JavaScript no lado do servidor.
+
+- Segurança de acesso: 
+  - Cors: Para controlar o acesso a recursos.
 
 ## Design do projeto
 ![alt text](screenshot_SuperMercado.png)
@@ -70,24 +79,6 @@ Este projeto é simples, possuindo poucas funcionalidades, sendo elas:
 ```
 
 **Exemplo de EndPoint:** ``http://localhost:8080/historico``
-
-**Exemplo de resposta**
-```json
-[
-  {
-    "id": 1,
-    "data": "2025-06-15T00:05:48.179Z",
-    "total": 49
-  },
-  {
-    "id": 2,
-    "data": "2025-06-22T21:34:01.427Z",
-    "total": 25
-  }
-]
-```
-
-**Exemplo de EndPoint:** ``http://localhost:8080/pagamento``
 
 **Exemplo de resposta**
 ```json
