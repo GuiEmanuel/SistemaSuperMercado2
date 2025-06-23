@@ -25,16 +25,10 @@ function renderProduto(produtos) {
         let card = document.createElement("div");
         card.classList.add("produto");
         card.innerHTML = `
-            <img src="" alt="Arroz 5kg" />
         <h3>${produto.nome}</h3>
         <p>R$ ${produto.preco}</p>
         <button onclick="adicionarAoCarrinho('${produto.nome}', ${produto.preco})">Adicionar ao carrinho</button>
         `;
-
-        // Adiciona evento de clique para redirecionar para a página de detalhes
-        // card.addEventListener("click", function () {
-        //     informacoes(produto);
-        // });
 
         container.appendChild(card);
     }
@@ -64,10 +58,6 @@ function renderCategoria(categorias) {
         card.innerHTML = `
             <li><a href="#">${categoria.nome}</a></li>
         `;
-
-        // card.addEventListener("click", function () {
-        //     informacoes(categoria);
-        // });
 
         container.appendChild(card);
     }
@@ -116,21 +106,85 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
   });
   resumo += `\nTotal: R$ ${total.toFixed(2)}`;
 
-  // Mostra no HTML (poderia ser modal depois)
   const mensagem = document.getElementById("mensagem-compra");
   mensagem.style.display = "block";
   mensagem.style.color = "#2d8b57";
   mensagem.style.fontWeight = "bold";
   mensagem.textContent = "✅ Compra finalizada com sucesso! Obrigado!";
+  inserirPagamento()
 
-  // Limpa carrinho
   carrinho = [];
   total = 0;
   atualizarCarrinho();
 
-  // Também mostra alerta com resumo
   alert(resumo);
 });
+
+async function inserirPagamento() {
+
+    console.log("totalPrice:", total);
+
+    var dadosPagamento = {
+        total,
+    };
+
+    console.log(dadosPagamento);
+    var resposta = await fetch("http://localhost:8080/pagamento", {
+        method: "POST",
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify(dadosPagamento),
+
+    })
+
+    var data = await resposta.json();
+    console.log(data);
+}
+
+async function historic(){
+    const response = await fetch("http://localhost:8080/historico");
+    const dataPay = await response.json();
+
+    console.log(dataPay)
+
+    var idPagamento = []
+    var dataPag = []
+    var preco = []
+
+    for(let campo of dataPay){
+        idPagamento.push(campo.id).toString();
+        dataPag.push(campo.data).toString();
+        preco.push(campo.total).toString();
+    }
+    console.log(idPagamento, dataPag, preco)
+let tabelaHTML = `
+  <table border="1" cellspacing="0" cellpadding="4">
+    <thead>
+      <tr>
+        <th>ID Pagamento</th>
+        <th>Data</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
+
+for (let i = 0; i < idPagamento.length; i++) {
+  tabelaHTML += `
+    <tr>
+      <td>${idPagamento[i]}</td>
+      <td>${dataPag[i]}</td>
+      <td>${preco[i]}</td>
+    </tr>
+  `;
+}
+
+tabelaHTML += `</tbody></table>`;
+
+Swal.fire({
+  title: "Histórico de Pagamentos",
+  html: tabelaHTML,
+});
+}
 
 pesquisarProduto()
 pequisarCategoria()

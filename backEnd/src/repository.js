@@ -13,6 +13,7 @@ class FoodRepository {
       return { error: error.message };
     }
   }
+  
   async getAllCategory() {
     try {
       const sql = "select * from categoria";
@@ -34,24 +35,19 @@ class FoodRepository {
       return{error: error.message};
     }
   }
+
   async setPayment(payInfo) {
     try{
       const sql = `insert into venda (total)
                    values ($1)`;
       const response = await this.database.query(sql, [payInfo.total]);
 
-      for(const item of payInfo){
-        item = `insert into item_venda (id_venda, id_produto, quantidade, preco_unitario)
-                   values ($1, $2, $3, $4)`;
-                   const response = await this.database.query(item, [payInfo.id_venda, payInfo.id_produto, 
-                    payInfo.quantidade, payInfo.preco_unitario]);
-      }
-
       return "Pagamento realizado!";
     }catch(erro){
       return{error: error.message}
     }
   }
+
   async getAllpayments() {
     try {
       const sql = "select * from venda";

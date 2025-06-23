@@ -10,6 +10,7 @@ async function getAllProducts(request, reply) {
 
   reply.json(responseDB);
 }
+
 async function getProductById(request, reply) {
   const id = request.params.id;
   const responseDB = await repository.getProductById(id);
@@ -23,6 +24,7 @@ async function getProductById(request, reply) {
 
   reply.json(response);
 }
+
 async function getAllCategory(request, reply) {
   const responseDB = await repository.getAllCategory();
 
@@ -30,6 +32,7 @@ async function getAllCategory(request, reply) {
 
   reply.json(responseDB);
 }
+
 async function setPayment(request, reply){
   const payInfo = request.body;
 
@@ -39,6 +42,7 @@ async function setPayment(request, reply){
 
   reply.json(responseDB);
 }
+
 async function getHistorico(request, reply){
   const responseDB = await repository.getAllpayments();
 
