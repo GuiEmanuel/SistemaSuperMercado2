@@ -17,7 +17,7 @@ Este projeto é simples, possuindo poucas funcionalidades, sendo elas:
 
    [![My Skills](https://skillicons.dev/icons?i=js,postgres)](https://skillicons.dev)
 
-- API:
+- Bibliotecas:
   - SweetAlet2: Para criar a tabela de histórico.
 
 ## Design do projeto
