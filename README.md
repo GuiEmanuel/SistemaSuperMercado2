@@ -142,3 +142,4 @@ npm run dev
 Caso queira me pagar algum valor, primeiro me contate em algum desses, para que eu mande uma chave pix aleatória😁.
 - Email: guilhermerochasilva019@gmail.com
 - LinkedIn: https://www.linkedin.com/in/guilherme-rocha-080831323/
+- GitHub: https://github.com/GuiEmanuel
